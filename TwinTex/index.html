@@ -1,79 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
     <title>TwinTex</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <!-- <link href="css/grayscale.css" rel="stylesheet"> -->
-
-    <!-- Custom Fonts -->
-    <link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet"
-        type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+<style>
+h1{
+    font-weight: bold;
+}
+pre {
+    height: auto;
+    overflow: auto;
+    background-color: #f6f8fa;
+    word-break: normal !important;
+    word-wrap: normal !important;
+    white-space: pre-wrap !important;
+}
+a.black {
+    color: black
+}
+a.black_underline {
+    color: black;
+    text-decoration-line: underline
+}
+p.bold {
+    font-weight: bold
+}
+p.bold_and_large {
+    font-weight: bold;
+    font-size: large
+}
+p.bold_and_italic {
+    font-weight: bold;
+    font-style: italic
+}
+a.footer {
+    color: black;
+    font-style: italic
+}
+</style>
 
 </head>
 
-<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
-    <section id="project" class="container content-section text-center">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                <br>
-                <br>
-                <br>
+<body>
 
-                <h1 style="font-size:45px" align="center">TwinTex: Geometry-aware Texture Generation <br>for Abstracted3D Architectural Models</h1>
-                <h4>Weidan Xiong, Hongqian Zhang, Botao Peng, Ziyu Hu, Yongli Wu, Jianwei Guo, Hui Huang*<h4> 
-					<p> <br></p>
-                <div style="text-align: center;">
-                    <p>ACM Transactions on Graphics (Proc. SIGGRAPH Asia), 2023</p>
-                    <img src="Abstract.png" alt="Centered Image">
-                </div>
+<!-- Some color reference: gray: #f7f7f7; cardinal: #c41e3a -->
 
-                <h3  align="center">Abstract</h3>
-                <p>Coarse architectural models are often generated at scales ranging from individual buildings to scenes for downstream applications such as Digital Twin City, Metaverse, LODs, etc. Such piece-wise planar models can be abstracted as twins from 3D dense reconstructions. However, these models typically lack realistic texture relative to the real building or scene, making them unsuitable for vivid display or direct reference. In this paper, we present TwinTex, the first automatic texture mapping framework to generate a photo-realistic texture for a piece-wise planar proxy. Our method addresses most challenges occurring in such twin texture generation. Specifically, for each primitive plane, we first select a small set of photos with greedy heuristics considering photometric quality, perspective quality and facade texture completeness. Then, different levels of line features (LoLs) are extracted from the set of selected photos to generate guidance for later steps. With LoLs, we employ optimization algorithms to align texture with geometry from local to global. Finally, we fine-tune a diffusion model with a multi-mask initialization component and a new dataset to inpaint the missing region. Experimental results on many buildings, indoor scenes and man-made objects of varying complexity demonstrate the generalization ability of our algorithm. Our approach surpasses state-of-the-art texture mapping methods in terms of high-fidelity quality and reaches a human-expert production level with much less effort.</p>
+<!-- Main page -->
+<div class="container pt-5">
+    <!-- Title -->
+    <div class="row pt-4">
+        <div class="col-md-12" style="text-align: center;">
+            <h1>TwinTex: Geometry-aware Texture Generation for Abstracted 3D
+                Architectural Models</h1>
+        </div>
+    </div>
+    <!-- Authors -->
+    <div class="row pt-4">
+        <div class="col-md-12" style="text-align: center;">
+            <h5>Weidan Xiong, Hongqian Zhang, Botao Peng, Ziyu Hu, Yongli Wu, Jianwei Guo, Hui Huang*
+            </h5>
+        </div>
+    </div>
+    <!-- Jounral -->
+        <div class="row pt-4">
+            <div class="col-md-12" style="text-align: center;">
+                <h5>ACM Transactions on Graphics (Proc. SIGGRAPH Asia), 2023
+                </h5>
+            </div>
+    </div>
+    <!-- Teaser -->
+    <div class="row pt-4">
+        <div class="col-md-12" style="text-align: center;">
+            <img src="teaser.png" width="100%">
+        </div>
+    </div>
+    <!-- Abstract -->
+    <div class="row pt-4">
+        <div class="col-md-12">
+            <h2>Abstract</h2>
+            <p>
+                Coarse architectural models are often generated at scales ranging from individual buildings to scenes for downstream applications such as Digital Twin City, Metaverse, LODs, etc. Such piece-wise planar models can be abstracted as twins from 3D dense reconstructions. However, these models typically lack realistic texture relative to the real building or scene, making them unsuitable for vivid display or direct reference. In this paper, we present TwinTex, the first automatic texture mapping framework to generate a photo-realistic texture for a piece-wise planar proxy. Our method addresses most challenges occurring in such twin texture generation. Specifically, for each primitive plane, we first select a small set of photos with greedy heuristics considering photometric quality, perspective quality and facade texture completeness. Then, different levels of line features (LoLs) are extracted from the set of selected photos to generate guidance for later steps. With LoLs, we employ optimization algorithms to align texture with geometry from local to global. Finally, we fine-tune a diffusion model with a multi-mask initialization component and a new dataset to inpaint the missing region. Experimental results on many buildings, indoor scenes and man-made objects of varying complexity demonstrate the generalization ability of our algorithm. Our approach surpasses state-of-the-art texture mapping methods in terms of high-fidelity quality and reaches a human-expert production level with much less effort.
+            </p>
+        </div>
+    </div>
 
-                <p style="font-size:16px" align="left">
-                    <hr>
-                
-                <h3 style="font-size:16px" align="left">paper(coming)</h3>
-                <h3 style="font-size:16px" align="left">Houdini:[<a href="TwinTex_dso.zip"><b>plug-in</b></a>] </h3>
-                <h3 style="font-size:16px" align="left">Video(coming)</h3>
-                <h3 style="font-size:16px" align="left">Fine-tuned Model[<a href="https://www.dropbox.com/scl/fi/mc3gsvsbxhp27sl0rknbw/ema_0.9999_151161.pt?rlkey=te3n8gxt3op0zkpxltxxnba79&dl=0"><b>Models</b></a>] </h3> 
-                <hr>
-                <p> </p>
+    <hr>
+
+    <!-- Video -->
+    <div class="row pt-4">
+        <div class="col-md-12">
+            <h2>Video(coming)</h2>
+        </div>
+        <!-- <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="" allowfullscreen></iframe>
             </div>
         </div>
-    </section>
+        <div class="col-md-3"></div> -->
+    </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container text-center">
-            <p>Copyright &copy; VCC All rights reserved</p>
+    <br>
+
+    <!-- Ack -->
+    <!-- <div class="row pt-4">
+        <div class="col-md-12">
+            <h2>Acknowledgments</h2>
+            <p>
+            </p>
         </div>
-    </footer>
+    </div>
 
-    <!-- jQuery -->
+    <hr> -->
+
+    <!-- Paper and Plugin -->
+    <div class="row pt-4">
+        <div class="col-md-12">
+            <h2>Paper and Plugin</h2>
+            <div>
+                <a class="black_underline">[Paper](coming)</a>
+                <a class="black_underline">[Supp](coming)</a>
+                <!-- <a class="black_underline">[Video](coming)</a> -->
+                <a href="TwinTex_dso.zip" class="black_underline">[Houdini Plug-in]</a>
+                <a href="https://www.dropbox.com/scl/fi/mc3gsvsbxhp27sl0rknbw/ema_0.9999_151161.pt?rlkey=te3n8gxt3op0zkpxltxxnba79&dl=0" class="black_underline">[model]</a>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    <!-- Bibtex -->
+    <!-- <div class="row pt-4">
+        <div class="col-md-12">
+            <h2>Citation</h2>
+            <pre>
+            </pre>
+        </div>
+    </div>
+
+    <hr> -->
+    <!-- Footer -->
+    <div class="row pt-1">
+        <div class="col-md-5">
+            <div class="float-left">
+                <a href="https://vcc.tech",class=footer>VISUAL COMPUTING RESEARCH CENTER</a>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="float-right">
+                <a>Copyright©2023 VCC.All rights reserved.</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<br>
 
 
 </body>
-
 </html>
